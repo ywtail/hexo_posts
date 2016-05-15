@@ -18,8 +18,6 @@ tags: hexo
 
 具体如下。
 
----
-
 ## **安装Git**
 
 [下载](http://git-scm.com/download/ "")并安装。
@@ -34,6 +32,7 @@ tags: hexo
 ## **安装hexo**
 
 在任意位置点击鼠标右键，选择Git bash。输入以下命令：
+
 ```bash
 npm install -g hexo
 ```
@@ -41,6 +40,7 @@ npm install -g hexo
 ## **创建hexo文件夹并安装依赖包**
 
 在H:\hexo内右键，选Git bash。输入以下命令
+
 ```bash
 hexo init
 npm install
@@ -48,6 +48,7 @@ npm install
 ## **本地查看**
 
 输入以下命令后，在浏览器查看。端口为4000。（[127.0.0.1:4000](127.0.0.1:4000 "")或[localhost:4000](localhost:4000 "")）
+
 ```bash
 hexo generate
 hexo server
@@ -57,11 +58,14 @@ generate也可简写为g，同理，server为s。
 **注意：**
 
 1.hexo s无效并出现如下提示信息时
+
 ```bash
 $ hexo s
 Usage: hexo <command>
 ```
+
 使用以下命令安装server
+
 ```bash
 npm install hexo-server --save
 ```
@@ -85,16 +89,19 @@ npm install hexo-server --save
 1.检查电脑是否已经有SSH key
 在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到步骤3。
 或者用以下方式查看。
+
 ```bash
 $ ls -al ~/.ssh
 # Lists the files in your .ssh directory, if they exist
 ```
 
 2.如果没有SSH key，则创建新的SSH key（Windows下打开Git Bash）。
+
 ```bash
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 # Creates a new ssh key, using the provided email as a label
 ```
+
 觉得不需要设置密码就一路回车。
 完成成功后可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露，id_rsa.pub是公钥，可以公开。
 
@@ -103,6 +110,7 @@ $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ## **部署**
 
 编辑H:\hexo\_config.yml。
+
 ```bash
 deploy:
   type: git
@@ -116,6 +124,7 @@ deploy:
 hexo g
 hexo d
 ```
+
 其中，d为deploy。
 
 休息一会，喝几口冷水，再在浏览器访问yourname.github.io就可以看到自己的博客了。
@@ -124,16 +133,21 @@ hexo d
 
 1.如果在执行hexo d时，报错如下（找不到git部署）
 
+
 ```bash
 ERROR Deployer not found: git
 ```
+
 解决方法如下
+
 ```bash
 npm install hexo-deployer-git --save
 ```
+
 再重新执行g，d即可访问。
 
 2.如果执行hexo d时，提示如下
+
 ```bash
 *** Please tell me who you are.
 
@@ -145,7 +159,9 @@ Run
 to set your account's default identity.
 Omit --global to set the identity only in this repository.
 ```
+
 按照上面的提示输入email和name。
+
 ```bash
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
@@ -156,14 +172,18 @@ git config --global user.name "Your Name"
 ## **写博客**
 
 新建博客，在bash下输入以下命令就可以完成名为testname.md博客文件的新建，在`H:\hexo\source\_posts`可以找到。
+
 ```
 hexo new "testname"
 ```
+
 写完博客后，使用如下命令生成并发表。
+
 ```
 hexo g
 hexo d
 ```
+
 发表前可以使用`hexo s`本地查看一下，修改定稿后再`hexo d`发布。
 
 

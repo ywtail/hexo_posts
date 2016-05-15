@@ -32,8 +32,6 @@ tags: hexo
 
 具体如下。
 
----
-
 ## **在github添加仓库**
 
 完成[hexo 简单搭建（一）](http://ywtail.github.io/2016/05/14/hexo-1/ "")，则已经安装好了git，也添加好了ssh。所以在本机A中，直接在github中添加远程仓库hexo。具体方法参见[添加远程库](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013752340242354807e192f02a44359908df8a5643103a000 "")。
@@ -84,7 +82,7 @@ git reset --hard origin/master
 clone下来后使用`npm install`安装依赖包。
 完成后生成`node_modules/`等文件。
 
-然后就可以自由地写博客了，写完后重新同步到github，方法如上。
+然后就可以自由地写博客了，写完后重新同步到github，方法如上。（git pull,git push）
 
 **参考**
 
