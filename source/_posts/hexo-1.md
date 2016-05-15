@@ -5,9 +5,25 @@ tags: hexo
 ---
 简单记录下搭建hexo的过程。
 
+<!--more-->
+
+首先介绍一下本文中hexo搭建的大致流程：
+
+1. 完成准备工作：安装git；安装node.js；bash下`hexo init`安装hexo;bash下`npm install`安装依赖包。
+2. 本地查看：使用`hexo g`生成；使用`hexo s`打开服务器；在浏览器输入[127.0.0.1:4000](127.0.0.1:4000 "")或[localhost:4000](localhost:4000 "")查看。
+3. 部署到github：创建repository；添加ssh key；在hexo配置文件`hexo_config.yml`中修改，完成部署。
+4. 查看：浏览器访问`yourname.github.io`就可以查看了，看不到可以稍等几分钟。
+5. 写博客：创建博客`hexo new "testname"`；完成后`hexo g`生成，`hexo s`本地查看（修改）；定稿后`hexo d`发布。
+这样就可以在`yourname.github.io`查看到自己的博客了。
+
+具体如下。
+
+---
+
 ## **安装Git**
 
 [下载](http://git-scm.com/download/ "")并安装。
+鼠标右键看到Git Bash说明安装成功。
 
 ## **安装Node.js**
 
@@ -31,7 +47,7 @@ npm install
 ```
 ## **本地查看**
 
-输入以下命令后，在浏览器查看。端口为4000。（127.0.0.1:4000）
+输入以下命令后，在浏览器查看。端口为4000。（[127.0.0.1:4000](127.0.0.1:4000 "")或[localhost:4000](localhost:4000 "")）
 ```bash
 hexo generate
 hexo server
@@ -74,7 +90,7 @@ $ ls -al ~/.ssh
 # Lists the files in your .ssh directory, if they exist
 ```
 
-2.如果没有SSH key，则创建新的SSH key（（Windows下打开Git Bash）。
+2.如果没有SSH key，则创建新的SSH key（Windows下打开Git Bash）。
 ```bash
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 # Creates a new ssh key, using the provided email as a label
@@ -103,6 +119,7 @@ hexo d
 其中，d为deploy。
 
 休息一会，喝几口冷水，再在浏览器访问yourname.github.io就可以看到自己的博客了。
+
 **注意：** 
 
 1.如果在执行hexo d时，报错如下（找不到git部署）
@@ -135,6 +152,20 @@ git config --global user.name "Your Name"
 ```
 
 3.不论在创建repository时是`yourname/yourname@github.com`还是`yourname/yourname@github.io`，都必须访问yourname.github.io才能访问。yourname.github.com是不能够访问的。
+
+## **写博客**
+
+新建博客，在bash下输入以下命令就可以完成名为testname.md博客文件的新建，在`H:\hexo\source\_posts`可以找到。
+```
+hexo new "testname"
+```
+写完博客后，使用如下命令生成并发表。
+```
+hexo g
+hexo d
+```
+发表前可以使用`hexo s`本地查看一下，修改定稿后再`hexo d`发布。
+
 
 **参考**
 
