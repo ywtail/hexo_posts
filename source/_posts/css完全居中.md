@@ -31,7 +31,7 @@ body {
 效果如图：
 ![初始效果](http://7q5c08.com1.z0.glb.clouddn.com/css/%E6%AD%A3%E5%B8%B81.png "")
 
-### 水平居中
+## 水平居中
 在css文件的`.container`中加上说明`margin: auto`。
 
 ```css
@@ -46,7 +46,7 @@ body {
 效果如图：
 ![水平居中](http://7q5c08.com1.z0.glb.clouddn.com/css/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD1.png "")
 
-### 完全居中
+## 完全居中
 
 * 方法一
 设置`position`为`absolute`，具体如下。
@@ -85,7 +85,7 @@ body {
 在容器内完全居中将父元素的`position`设置为 `relative`。（经实测，父元素`position: absolute`也可以）
 
 
-### 向左偏移
+## 向左偏移
 
 令`left:0; right:auto`。
 
