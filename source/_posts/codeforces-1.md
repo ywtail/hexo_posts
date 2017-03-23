@@ -2,6 +2,7 @@
 title: Codeforces（1）：723A 716A 714A
 date: 2016-10-22 14:43:07
 tags: [Codeforces,python]
+categories: codeforces
 ---
 
 ## 723A. The New Year: Meeting Friends

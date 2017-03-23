@@ -2,6 +2,8 @@
 title: 使用github展示项目主页
 date: 2016-06-03 22:15:15
 tags: git
+categories: git
+top: 1
 ---
 本文主要流程如下：
 

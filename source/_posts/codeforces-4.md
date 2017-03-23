@@ -2,6 +2,7 @@
 title: codeforces（4）：659A 656A 634A
 date: 2016-10-23 10:13:27
 tags: [Codeforces,python]
+categories: codeforces
 ---
 
 ## 659A. Round House

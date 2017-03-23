@@ -2,10 +2,9 @@
 title: hexo 多pc同步（二）
 date: 2016-05-15 09:00:39
 tags: hexo
+categories: hexo
 ---
 因为有两台电脑，所以搜索了下多pc同步问题。这样，不论是重装系统，还是换机器，都能方便管理自己的博客。
-
-<!--more-->
 
 首先介绍一下[hexo和博客源文件之间的关系](http://ywtail.github.io/2016/05/14/hexo-1/ "")。
 > 1.hexo帮助把博客发送到github，同时把md文件转换成网页文件。

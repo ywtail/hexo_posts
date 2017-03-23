@@ -2,10 +2,9 @@
 title: hexo 简单搭建（一）
 date: 2016-05-14 22:45:55
 tags: hexo
+categories: hexo
 ---
 简单记录下搭建hexo的过程。
-
-<!--more-->
 
 首先介绍一下本文中hexo搭建的大致流程：
 

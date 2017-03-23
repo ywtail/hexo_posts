@@ -2,6 +2,7 @@
 title: 'nowcoder(1):最大差值 棋子翻转'
 date: 2017-03-19 22:17:46
 tags: [nowcoder,python]
+categories: nowcoder
 ---
 
 ## 最大差值
@@ -15,7 +16,6 @@ tags: [nowcoder,python]
 **测试样例：**
 
 > [10,5],2
->
 > 返回：0
 
 - 最简单的思路是遍历两遍，求最大差值。时间复杂度O(n^2)。

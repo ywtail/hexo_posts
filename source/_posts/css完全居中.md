@@ -2,6 +2,7 @@
 title: css完全居中
 date: 2016-06-21 15:53:27
 tags: css
+categories: 前端
 ---
 列出两种方法备忘一下。
 主要参考[如何只用CSS做到完全居中](http://blog.jobbole.com/46574/ "")，英文原文在[Absolute Centering in CSS](http://codepen.io/shshaw/full/gEiDt "")。
@@ -15,6 +16,7 @@ HTML相关内容如下：
 	</div>
 </body>
 ```
+
 CSS相关内容如下：
 ```css
 body {

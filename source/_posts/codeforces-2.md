@@ -2,6 +2,7 @@
 title: codeforces（2）：732A 731A 712A
 date: 2016-10-22 16:04:39
 tags: [Codeforces,python]
+categories: codeforces
 ---
 
 ## 732A. Buy a Shovel

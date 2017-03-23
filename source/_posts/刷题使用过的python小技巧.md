@@ -2,6 +2,8 @@
 title: 刷题使用过的python小技巧
 date: 2017-03-14 08:23:22
 tags: [python,Codeforces]
+categories: python
+top: 1
 ---
 
 在刷题的过程中，使用了一些python常用的技巧，汇总如下（出处或更详细的解释会在小标题下方标明）。

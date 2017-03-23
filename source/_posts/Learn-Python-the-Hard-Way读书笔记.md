@@ -2,7 +2,7 @@
 title: Learn Python the Hard Way读书笔记
 date: 2017-03-14 22:49:11
 tags: python
-toc: false
+categories: python
 ---
 
 - import test不用加.py

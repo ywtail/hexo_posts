@@ -2,7 +2,8 @@
 title: git基础
 date: 2016-07-16 14:58:32
 tags: git
-toc: false
+categories: git
+top: 1
 ---
 
 ### 将内容添加到远程仓库
@@ -28,7 +29,7 @@ git commit -a -m 'description'
 git push
 ```
 
-## 其它问题
+### 其它问题
 
 如果在`push -u origin master`后报错如下
 ```bash

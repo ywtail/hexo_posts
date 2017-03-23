@@ -2,6 +2,7 @@
 title: codeforces（3）：727A 724A 722A
 date: 2016-10-22 20:37:49
 tags: [Codeforces,python]
+categories: codeforces
 ---
 
 ## 727A. Transformation: from A to B
