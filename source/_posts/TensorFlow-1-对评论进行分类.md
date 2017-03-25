@@ -11,15 +11,11 @@ top: 2
 原作者：@斗大的熊猫，地址：http://blog.topspeedsnail.com/archives/10399
 
 ### 关于 TensorFlow
-
 引用[TensorFlow中文社区](http://www.tensorfly.cn/)中的解释：
-
 > TensorFlow™ 是一个采用数据流图（data flow graphs），用于数值计算的开源软件库。节点（Nodes）在图中表示数学操作，图中的线（edges）则表示在节点间相互联系的多维数据数组，即张量（tensor）。它灵活的架构让你可以在多种平台上展开计算，例如台式计算机中的一个或多个CPU（或GPU），服务器，移动设备等等。TensorFlow 最初由Google大脑小组（隶属于Google机器智能研究机构）的研究员和工程师们开发出来，用于机器学习和深度神经网络方面的研究，但这个系统的通用性使其也可广泛用于其他计算领域。
 
 ### 流程总结
-
 所使用的是`python 3.6` + `tensorflow 1.0.0`，具体实现流程如下
-
 - 下载数据集
   - neg.txt：5331条负面电影评论[下载]([http://blog.topspeedsnail.com/wp-content/uploads/2016/11/neg.txt](http://blog.topspeedsnail.com/wp-content/uploads/2016/11/neg.txt))
   - pos.txt：5331条正面电影评论 [下载]([http://blog.topspeedsnail.com/wp-content/uploads/2016/11/pos.txt](http://blog.topspeedsnail.com/wp-content/uploads/2016/11/pos.txt))
@@ -40,13 +36,9 @@ top: 2
   - `dataset`中，features作为x，clf作为y，每次取50条数据训练，共训练15次
 
 ### 参考资料
-
 对于TensorFlow看不懂的部分，参考[TensorFlow学习笔记1：入门](http://www.jeyzhang.com/tensorflow-learning-notes.html)
-
 - Sessions最后需要关闭，以释放相关的资源；你也可以使用`with`模块，session在`with`模块中自动会关闭
-
 - 抓取(Fetches)：为了抓取`ops`的输出，需要先执行`session`的`run`函数。然后，通过`print`函数打印状态信息。
-
   ```python
   input1 = tf.constant(3.0)
   input2 = tf.constant(2.0)
@@ -61,11 +53,8 @@ top: 2
   # output:
   # [array([ 21.], dtype=float32), array([ 7.], dtype=float32)]
   ```
-
   所有tensors的输出都是一次性 [连贯] 执行的。
-
 - 填充(Feeds):TensorFlow也提供这样的机制：先创建特定数据类型的占位符(placeholder)，之后再进行数据的填充。例如下面的程序：
-
   ```python
   input1 = tf.placeholder(tf.float32)
   input2 = tf.placeholder(tf.float32)
@@ -77,13 +66,10 @@ top: 2
   # output:
   # [array([ 14.], dtype=float32)]
   ```
-
   如果不对`placeholder()`的变量进行数据填充，将会引发错误，更多的例子可参考[MNIST fully-connected feed tutorial (source code)](https://www.tensorflow.org/versions/r0.7/tutorials/mnist/tf/index.html)。
 
 ### 完整代码及执行结果
-
 根据个人习惯对原作者的代码进行了调整，具体如下
-
 ```python
 # coding=utf-8
 import nltk
@@ -225,7 +211,6 @@ if __name__ == '__main__':
 ```
 
 **执行结果**
-
 ```
 分词后词汇数： 230193
 词性还原及去重后词汇数： 18643
