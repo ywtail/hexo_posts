@@ -293,7 +293,7 @@ baidu_analytics: 477bb2549f6bf821399b1315901684f5
 #duoshuo_shortname:
 
 # Disqus
-#disqus_shortname:
+# disqus_shortname
 
 # Hypercomments
 #hypercomments_id:
@@ -309,7 +309,7 @@ changyan:
 
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
-#youyan_uid: your uid
+youyan_uid: 2128611
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
