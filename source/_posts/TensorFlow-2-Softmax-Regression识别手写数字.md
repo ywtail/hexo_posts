@@ -130,7 +130,7 @@ init = tf.global_variables_initializer()  # 对所有的参数进行初始化
 sess = tf.Session()  # 在一个Session里运行模型
 sess.run(init)  # 执行初始化
 
-for i in range(1000):
+for i in range(5000):
     batch_xs, batch_ys = mnist.train.next_batch(100)  # 每次随机取100个样本进行训练
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
@@ -161,8 +161,19 @@ train: (55000, 784) (55000, 10)
 test: (10000, 784) (10000, 10)
 validation: (5000, 784) (5000, 10)
 ==============================
-0.9143
+0.922
 ```
+
+### 总结
+
+上面使用 `TensorFlow` 实现了一个简单的机器学习算法 `Softmax Regression`，这可以算作是一个没有隐含层的最浅的神经网络。整个流程可以分为4个部分：
+>1. 定义算法公式，也就是神经网络的 `forward` 时的计算
+2. 定义 `loss`，选定优化器（这里选的是梯度下降），并指定优化器优化 `loss`
+3. 迭代地对数据进行训练
+4. 在测试集或验证集上对准确率进行测评
+
+以上几个步骤是使用 `TensorFlow` 进行算法设计、训练的核心步骤。
+`TensorFlow` 和 `Spark` 类似，我们定义的各个公式其实只是 `Computation Graph`，在执行这行代码时，计算还没有实际发生，只有等调用 `run` 方法，并 `feed` 数据时计算才真正执行。比如 `cross_entropy`、`train_step`、`accuracy` 等都是计算图中的节点，而不是数据结果，我们可以通过调用 `run` 方法执行这些结点或者说运算操作来获取结果。
 
 ### 参考
 - 图书：TensorFlow实战 / 黄文坚，唐源著
