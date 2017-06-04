@@ -1,7 +1,7 @@
 ---
 title: 'TensorFlow (3): 多层感知机识别手写数字'
 date: 2017-06-03 21:05:12
-tags: [TensorFlow,python]
+tags: [TensorFlow,MachineLearning,python]
 categories: TensorFlow
 top: 2
 mathjax: true

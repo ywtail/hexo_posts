@@ -1,7 +1,7 @@
 ---
 title: 'TensorFlow (1): 对评论进行分类'
 date: 2017-03-24 20:42:42
-tags: [TensorFlow,python]
+tags: [TensorFlow,MachineLearning,python]
 categories: TensorFlow
 top: 2
 ---

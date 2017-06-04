@@ -1,7 +1,7 @@
 ---
 title: 'TensorFlow (2): Softmax Regression识别手写数字'
 date: 2017-06-02 18:47:34
-tags: [TensorFlow,python]
+tags: [TensorFlow,MachineLearning,python]
 categories: TensorFlow
 top: 2
 mathjax: true
