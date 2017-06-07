@@ -525,8 +525,6 @@ vendors:
   # https://github.com/hustcc/canvas-nest.js
   canvas_nest:
 
-
-
 # Assets
 css: css
 js: js
