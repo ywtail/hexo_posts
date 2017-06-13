@@ -8,7 +8,7 @@ top: 2
 
 本文首先对 Word2Vec 进行简单介绍，然后使用 python 构造训练样本，最后实现 Word2Vec，并产生可视化结果。
 
-本文中涉及的所有代码均在 [github.com/ywtail](https://github.com/ywtail/TensorFlow/tree/master/6_%E5%AE%9E%E7%8E%B0Word2Vec)。
+本文中涉及的所有代码均在 [github.com/ywtail](https://github.com/ywtail/TensorFlow/tree/master/6_%E5%AE%9E%E7%8E%B0Word2Vec)。查看运行过程可点击 [这个链接](https://ywtail.github.io/TensorFlow/6_word2vec.html) 。
 
 ### Word2Vec 简介
 
@@ -153,7 +153,7 @@ def generate_batch(batch_size, num_skips, skip_window):
 - labels：输出 labels，用 np.ndarray 将 labels 初始化为数组；
 
 ```python
-	batch = np.ndarray(shape=(batch_size), dtype=np.int32)
+    batch = np.ndarray(shape=(batch_size), dtype=np.int32)
     labels = np.ndarray(shape=(batch_size, 1), dtype=np.int32)
 ```
 
@@ -164,7 +164,7 @@ def generate_batch(batch_size, num_skips, skip_window):
 在函数  `generate_batch` 中，创建最大容量为 span 的 deque，从 data_index 开始，把 span 个单词顺序读入 buffer 作为初始值，buffer 中存的是词的编号。因为 buffer 是容量为 span 的 deque，所以此时 buffer 已经充满，后续数据将替换掉前面的数据。
 
 ```python
-	span = 2 * skip_window + 1
+    span = 2 * skip_window + 1
     buffer = collections.deque(maxlen=span)
 
     for _ in range(span):
@@ -359,7 +359,7 @@ plot_with_labels(low_dim_embs, labels)
 
 从可视化结果可以看出，距离相近的单词在语义上具有很高的相似性。在训练 Word2Vec 模型时，为了获得比较好的结构，我们可以使用大规模的语料库，同时需要对参数进行调试，选取最合适的值。
 
-### 完整代码
+### 完整代码及运行结果
 
 本文相关内容在 [github.com/ywtail](https://github.com/ywtail/TensorFlow/tree/master/6_%E5%AE%9E%E7%8E%B0Word2Vec)中，完整代码如下
 
@@ -591,6 +591,8 @@ low_dim_embs = tsne.fit_transform(final_embeddings[:plot_only, :])
 labels = [reverse_dictionary[i] for i in range(plot_only)]
 plot_with_labels(low_dim_embs, labels)
 ```
+生成的可视化文件如下：
+![word2vec可视化](http://7q5c08.com1.z0.glb.clouddn.com/tsne.png)
 
 ### 参考
 
