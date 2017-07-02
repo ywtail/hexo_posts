@@ -20,7 +20,46 @@ doc.styles        #样式集合
 doc.inline_shapes #内置图形 等等...
 ```
 
+### 读写标题
+
+背景：需要将某个文档中的标题拷贝到另一个文档中，但是标题太过分散，手动拷贝太费劲，所以考虑使用 docx 来处理。
+
+打开 doc 文档，获取所有的 paragraphs（里面包含了Heading），查看这些 paragraphs 的 style（查看需要获取的标题是几级的）
+
+```python
+import docx
+doc=docx.Document('filename.docx') #打开文档
+
+ps=doc.paragraphs
+for p in ps:
+    print(p.style)
+```
+
+通过上面执行结果知道在这个文档（`filename.docx`）中，标题的 style 包括 `Heading 1`、`Heading 2`、`Heading 3`（其他文档的标题也许不是这些 style），我们通过 `p.style.name`来匹配这些标题，将标题及其 level 存到 re 中备用。
+
+```python
+re=[]
+for p in ps:
+    if p.style.name=='Heading 1':
+        re.append((p.text,1))
+    if p.style.name=='Heading 2':
+        re.append((p.text,2))
+    if p.style.name=='Heading 3':
+        re.append((p.text,3))   
+```
+
+现在已经获取了标题内容以及标题的 level，将 re 列表“解压”：`titles,titledes=zip(*re)`，标题存在 titles 列表中，level 存在 titledes 列表中，接下来将标题写到新文档中
+
+```python
+newdoc=docx.Document()
+for i in range(len(titles)):
+	newdoc.add_heading(titles[i],level=titledes[i])
+newdoc.save('newfile.docx')
+```
+
 ### 获取表格内容
+
+背景：需要获取某个文档中所有表格的第二列和第三列内容。
 
 打开doc文档
 
@@ -60,7 +99,28 @@ for table in doc.tables: #列举文档中的表格
 df.to_csv('filename.csv',index=False,encoding='gb2312')
 ```
 
+### 创建表格
 
+ `Document.add_table` 的前两个参数设置表格行数和列数，第三个参数设定表格样式，也可以用 table 的 style 属性获取和设置样式。如果设置样式，可以直接用样式的英文名称，例如『Table Grid』；如果对样式进行了读取，那么会得到一个 Style对象。这个对象是可以跨文档使用的。除此之外，也可以使用 `Style.name` 方法得到它的名称。
+
+下面创建一个 6 行 2 列的表格，可以通过 `table.cell(i,j).text` 来对表格进行填充。
+
+```python
+doc=docx.Document()
+tabel=doc.add_table(rows=6,cols=2,style = 'Table Grid') #实线
+tabel.cell(0,0).text='编号'
+tabel.cell(1,0).text='位置'
+```
+
+上面创建的表格每一列等宽，可以设置表格的列宽使其更美观。
+
+```python
+from docx.shared import Inches
+for t in doc.tables:
+    for row in t.rows:
+        row.cells[0].width=Inches(1)
+        row.cells[1].width=Inches(5)
+```
 
 ### 参考
 
