@@ -91,6 +91,12 @@ print filter(str.isalnum,s)
 #dade1420142fad
 ```
 
+### 不使用int将字符串转为整数
+
+- 使用 `evel(s)-evel('0')` 将字符串转为整数（例如'1234'转为1234）
+
+- eval的功能是将字符串str当成有效的表达式来求值并返回计算结果。在python中，'9'-'0'会报错，但是 evel('9')-evel('0')=9
+
 ### 全排列permutations
 
 参考[PYTHON-进阶-ITERTOOLS模块小结](http://wklken.me/posts/2013/08/20/python-extra-itertools.html#itertoolspermutationsiterable-r "")
@@ -112,6 +118,7 @@ for x in list(itertools.permutations('123',3)):
 ### 去除列表中重复元素
 参考：[Python去除列表中重复元素的方法](http://www.jb51.net/article/62587.htm "")
 - set
+如果re是列表 [[1, 3], [1, 3], [3, 5]]，set(re) 报错 `TypeError: unhashable type: 'list' `，将列表内改为()则成功，例如 set([(1,2),(1,2),(1,3)])=set([(1, 2), (1, 3)])
 ```python
 l1 = [1,4,5,6,2,3,1,3,5,3]
 print set(l1)
