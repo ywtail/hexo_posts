@@ -3,7 +3,6 @@ title: Kaggle记录
 date: 2017-06-19 21:48:41
 tags: [Kaggle,MachineLearning,python]
 categories: Kaggle
-top: 2
 ---
 
 ## Titanic

@@ -3,7 +3,6 @@ title: mysql使用记录
 date: 2017-07-19 19:47:15
 tags: [tools,sql]
 categories: tools
-top: 2
 ---
 
 在mac中使用mysql的记录。

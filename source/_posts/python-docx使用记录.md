@@ -3,7 +3,6 @@ title: python-docx使用记录
 date: 2017-06-30 21:31:41
 tags: [python,docx]
 categories: [python]
-top: 2
 ---
 
 因为要处理中文，所以在这里使用 python3（相对 python2 编码问题较少）。
