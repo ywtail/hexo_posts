@@ -90,6 +90,7 @@ skleran 0.18.1
 为了验证效果，使用的数据集是kaggle上digit-recognizer给的数据集，取了前3000行来验证实现的kNN效果。
 
 ### 线性扫描法（Linear Scan）实现
+实现详细过程见：[kNN线性扫描实现](https://ywtail.github.io/python/%E5%8F%AF%E8%A7%86%E5%8C%96/kNN%E7%BA%BF%E6%80%A7%E6%89%AB%E6%8F%8F%E5%AE%9E%E7%8E%B0.html)，其中包括各个函数的用法探索。
 ```python
 # coding:utf-8
 from __future__ import division
