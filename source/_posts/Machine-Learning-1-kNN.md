@@ -1,7 +1,7 @@
 ---
 title: 'Machine Learning (1): kNN'
 date: 2017-09-03 18:39:36
-tags: [Machine Learning,python]
+tags: [MachineLearning,python]
 categories: Machine Learning
 ---
 

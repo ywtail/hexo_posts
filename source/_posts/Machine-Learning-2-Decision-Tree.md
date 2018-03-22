@@ -1,7 +1,7 @@
 ---
 title: 'Machine Learning (2): Decision Tree'
 date: 2017-09-06 09:07:58
-tags: Machine Learning
+tags: MachineLearning
 categories: Machine Learning
 ---
 
