@@ -12,52 +12,57 @@ top: 1
 
 ### replace
 
-- `str.replace(old, new[, max])`
-
-> old -- 将被替换的子字符串。
-> new -- 新字符串，用于替换old子字符串。
-> max -- 可选字符串, 替换不超过 max 次
+- `str.replace(old, new[, max])`，其中，old -- 将被替换的子字符串；new -- 新字符串，用于替换old子字符串；max -- 可选字符串, 替换不超过 max 次。并且使用replace，不改变原字符串。
+```python
+s='abcb'
+print s.replace('b','x')
+#axcx
+print s.replace('b','x',1)
+#axcb
+print s
+#abcb
+'''
+```
 
 ### strip去空格或字符
 
-- 去掉字符串前后空格，可以使用strip，lstrip，rstrip方法
+- 去掉字符串前后空格，可以使用strip，lstrip，rstrip方法。其中strip表示去除前后的空格，而不会去除字符串中间的空格。
 ```python
->>> a="abc".center (30)  
->>> a  
-'             abc              '  
->>> b=a.lstrip ()  
->>> b  
-'abc              '  
->>> c=a.rstrip ()  
->>> c  
-'             abc'  
->>> d=a.strip ()  
->>> d  
-'abc'
+a='aa b cd'.center(30)
+print '\''+a+'\''
+#'           aa b cd            '
+print '\''+a.lstrip()+'\''
+#'aa b cd            '
+print '\''+a.rstrip()+'\''
+#'           aa b cd'
+print '\''+a.strip()+'\''
+#'aa b cd'
 ```
 
-- 这三个方法默认是去掉空格，也可以通过参数去掉其他字符，等价与replace
+- 这三个方法默认是去掉空格，也可以通过参数去掉其他字符，等价于`replace(s,'')`。不同的是strip只有一个参数，不能设置最大删除次数。
 ```python
->>> a="abc"  
->>> b=a.strip ('a')  
->>> b  
-'bc'  
->>> c=a.replace ('a','')  
->>> c  
-'bc' 
+a='aa b cd'
+print a.replace('a','')
+# b cd
+print a.replace('a','',1)
+#a b cd
+print a.strip('a')
+# b cd
+print a.strip('a',1)
+#TypeError: strip() takes at most 1 argument (2 given)
 ```
 
-- 去除中间空格先split()，再join
+- 如果需要去除字符串中间空格，可以先split()，再join
 ```python
-s=' hello   world hello'
-print ''.join(s.split())
-#helloworldhello
+a='aa b cd'
+print ''.join(a.split())
+#aabcd
 ```
 
 - **注意：**join只能连接字符串列表！不能连接整数列表。对整数列表先转换为字符串列表。
 ```python
 x=[1,2,3]
-#print ''.join(x)
+print ''.join(x)
 #TypeError: sequence item 0: expected string, int found
 print ''.join(map(str,x))
 #123
