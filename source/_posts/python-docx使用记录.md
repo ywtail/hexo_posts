@@ -8,6 +8,27 @@ categories: [python]
 因为要处理中文，所以在这里使用 python3（相对 python2 编码问题较少）。
 
 安装 docx：使用 `pip3 install python-docx` 
+如果安装失败可以尝试：`pip3 easy-install python-docx`
+
+docx文档结构分为3层：
+- `Document`对象表示整个文档
+- `Document`包含了`Paragraph`对象的列表，`Paragraph`对象用来表示段落
+- 一个`Paragraph`对象包含了`Run`对象的列表，`Run`：
+word里不只有字符串，还有字号、颜色、字体等属性，都包含在`style`中。一个`Run`对象就是`style`相同的一段文本。
+新建一个`Run`就有新的`style`。
+
+### 基本操作
+
+参考：http://python-docx.readthedocs.io/en/latest/
+
+基本操作包括打开文档、在文档中写入内容、存储文档，简洁示例如下。
+```python
+from docx import Document
+doc=Document() #不填文件名默认新建空白文档。填文件名（必须是已存在的doc文件）将打开这一文档进行操作
+doc.add_heading('Hello') #添加标题
+doc.add_paragraph('word') #添加段落
+doc.save('test.docx') #保存，必须有1个参数
+```
 
 `python-docx`包含的对象集合如下
 
@@ -17,6 +38,49 @@ doc.tables        #表格集合
 doc.sections      #节  集合
 doc.styles        #样式集合
 doc.inline_shapes #内置图形 等等...
+```
+
+http://python-docx.readthedocs.io/en/latest/ 中的示例如下：
+> 
+```python
+from docx import Document
+from docx.shared import Inches
+
+document = Document()
+
+document.add_heading('Document Title', 0)
+
+p = document.add_paragraph('A plain paragraph having some ')
+p.add_run('bold').bold = True
+p.add_run(' and some ')
+p.add_run('italic.').italic = True
+
+document.add_heading('Heading, level 1', level=1)
+document.add_paragraph('Intense quote', style='IntenseQuote')
+
+document.add_paragraph(
+    'first item in unordered list', style='ListBullet'
+)
+document.add_paragraph(
+    'first item in ordered list', style='ListNumber'
+)
+
+document.add_picture('monty-truth.png', width=Inches(1.25))
+
+table = document.add_table(rows=1, cols=3)
+hdr_cells = table.rows[0].cells
+hdr_cells[0].text = 'Qty'
+hdr_cells[1].text = 'Id'
+hdr_cells[2].text = 'Desc'
+for item in recordset:
+    row_cells = table.add_row().cells
+    row_cells[0].text = str(item.qty)
+    row_cells[1].text = str(item.id)
+    row_cells[2].text = item.desc
+
+document.add_page_break()
+
+document.save('demo.docx')
 ```
 
 ### 读写标题
@@ -52,7 +116,7 @@ for p in ps:
 ```python
 newdoc=docx.Document()
 for i in range(len(titles)):
-	newdoc.add_heading(titles[i],level=titledes[i])
+    newdoc.add_heading(titles[i],level=titledes[i])
 newdoc.save('newfile.docx')
 ```
 
@@ -123,6 +187,7 @@ for t in doc.tables:
 
 ### 参考
 
+- http://python-docx.readthedocs.io/en/latest/
 - [Python读取word文档——python-docx](http://www.itwendao.com/article/detail/172784.html)
 - [Python读写docx文件](http://yshblog.com/blog/40)
 - [使用表格—— 使用Python读写Office文档之三](http://www.ctolib.com/topics-57923.html)
