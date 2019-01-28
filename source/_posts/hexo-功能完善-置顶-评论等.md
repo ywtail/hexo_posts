@@ -1,6 +1,6 @@
 ---
-title: hexo 功能完善(置顶 评论等)
-date: 2019-01-27 09:37:37
+title: hexo-功能完善-置顶-评论等
+date: 2019-01-28 01:42:34
 tags: hexo
 categories: hexo
 ---
@@ -70,8 +70,6 @@ top: 2
 
 ## 添加阅读量及访问量统计
 
-
-
 ### Next升级后添加访问量
 
 升级到v6后只需要修改`next/_config.yml`，则可以在底部显示访问量
@@ -85,6 +83,20 @@ busuanzi_count:
   total_views_icon: eye
   post_views: false  # 由于已经使用leancloud_visitors进行了统计，这里置为false
   post_views_icon: eye
+```
+
+如果进入文章出现这种报错 阅读次数： Counter not initialized! More info at console err msg.
+
+可参考：[LearnCloud报错解决](https://leaferx.online/2018/02/11/lc-security/)
+
+如果加入的这行报错：`- type: leancloud_counter_securi ...`，是因为缩进不对，正确格式如下
+
+```yaml
+deploy:
+  - type: git
+    repository: git@github.com:usrname/usrname.github.io.git 
+    branch: master
+  - type: leancloud_counter_security_sync
 ```
 
 ### 旧版本添加访问量
