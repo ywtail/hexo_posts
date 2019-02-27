@@ -89,3 +89,13 @@ class Solution(object):
         return p
 ```
 
+测试用例
+
+```
+print(removeDuplicates([1, 1, 2]))
+print(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]))
+print(removeDuplicates([]))
+print(removeDuplicates([1, 2]))
+print(removeDuplicates([1, 2, 2]))
+```
+
