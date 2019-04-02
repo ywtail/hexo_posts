@@ -5,8 +5,6 @@ tags: hive
 categories: hive
 ---
 
-
-
 ## 增
 
 ### 建表
@@ -76,10 +74,13 @@ ALTER TABLE page_view ADD PARTITION (dt='2008-08-08', country='us') location '/p
 
 ### 删除分区
 
-```bash
+```sql
 ALTER TABLE login DROP IF EXISTS PARTITION (dt='2008-08-08');
 
 ALTER TABLE page_view DROP IF EXISTS PARTITION (dt='2008-08-08', country='us');
+
+-- 删除多个分区
+ALTER TABLE app.xxx DROP IF EXISTS PARTITION (dt<'2019-04-01');
 ```
 
 ### 删外部表数据
@@ -90,20 +91,24 @@ ALTER TABLE page_view DROP IF EXISTS PARTITION (dt='2008-08-08', country='us');
 
 方案一：
 
-将表改为内部表`external =false`，删分区（hdfs数据会删掉），再改回为外部表`external=True`。
+将表改为内部表`external =false`，删分区（hdfs数据会删掉），再改回为外部表`external=True`。(对外部表的其他操作（如rename）也可以使用这个模式)
+
+```sql
+ALTER TABLE db_name.test_1 SET TBLPROPERTIES('EXTERNAL'='FALSE'); 
+
+ALTER TABLE app.xxx DROP IF EXISTS PARTITION (dt<'2019-04-01');
+
+ALTER TABLE db_name.test_1 SET TBLPROPERTIES('EXTERNAL'='TRUE'); 
+```
 
 方案二：
 
 先删分区，再用rm -r删数据
 
-```
-ALTER TABLE some.table DROP PARTITION (part="some")
+```sql
+ALTER TABLE some.table DROP IF EXISTS  PARTITION (part="some")
 hdfs dfs -rm -R /path/to/table/basedir
 ```
-
-方案二存在问题：原本打算将-rm操作放在index_builder中，但是现builder是在rec账号下，没有权限删除路径在recpro下的数据。
-
-所以，最终选方案一，更安全，简洁。
 
 ## 改
 
@@ -143,8 +148,14 @@ alter table table_name set TBLPROPERTIES ('EXTERNAL'='FALSE');
 ### 表的重命名
 
 ```sql
+-- 非外部表会同时修改location
 ALTER TABLE table_name RENAME TO new_table_name
 ```
+
+外部表需要修改location(更简洁的方法是，先将外部表转为内部表，重命名后再转为外部表)
+- mv 表数据存储的hdfs目录：例如：`hdfs dfs -mv  /user/xxx/xx.db/test_orc/*  /user/xxx/xx.db/test`（将test_orc下的数据全部移动到test目录下）
+- `hdfs dfs -rm -r /user/mart_mobile/dev.db/test_orc`（删除空目录）
+- 移动之后执行`set hive.msck.path.validation=ignore;msck repair table dev.test;`修复分区
 
 ### 修改分区
 
@@ -160,9 +171,9 @@ alter table app.xxxx partition(dt='2019-01-19') rename to partition(dt='2019-01-
 ### 修改location
 
 一般location在create table if not exist后，不会被触发，而如果删除表则会删除location，因此如果新建表的location错误指向了已经存在的location，需要手动修改新表location
-- 命令行新建location目录： `hadoop fs -mkdir 'hdfs://ns9/user/recsys/recpro/app.db/index_qrqm_sku_info_basic_new'`
+- 命令行新建location目录： `hadoop fs -mkdir 'hdfs://ns9/user/xxxx/xxx/app.db/table_name_new'`
 - `hive`
-- `alter table 表名 set locaion 'hdfs://ns9/user/recsys/recpro/app.db/index_qrqm_sku_info_basic_new'`
+- `alter table 表名 set location 'hdfs://ns9/user/xxxx/xxx/app.db/table_name_new'`
 - 验证：`show create table 表名`查看LOCATION是否更新
 
 ## 查
@@ -277,8 +288,6 @@ from(${subSql}) t
 - map数过大不一定运行快，过大的map数会被pending。
 - 在join时，如果on的是double数据类型，需要注意小数的精度不同可能造成=判定失败。可以用round(score, 2) score 只保留2位小数后再对比。
 
- 
-
 ## hdfs文件操作命令
 
 ### 常用
@@ -292,8 +301,8 @@ from(${subSql}) t
 
 ### 从文件导数据到表
 
-- 使用put将test.txt文件放到hdfs中：`hadoop fs -put '/home/test/test.txt' /usr/recsys/rec/index_data/test`
-- 使用load hdfs地址将数据导入表中：`load data inpath '/user/recsys/rec/index_data/test/test.txt' into table app.test;`
+- 使用put将test.txt文件放到hdfs中：`hadoop fs -put '/home/test/test.txt' /usr/xxxx/rec/xxx_data/test`
+- 使用load hdfs地址将数据导入表中：`load data inpath '/user/xxxx/rec/xxx_data/test/test.txt' into table app.test;`
 - 导入成功，可以在select limit表检查确认一下。
 
 ### `hadoop fs -ls [path]`查看HDFS文件名
