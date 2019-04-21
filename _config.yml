@@ -71,7 +71,7 @@ stylus:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   - type: git
-    repository: git@github.com:ywtail/ywtail.github.io.git 
+    repository: https://github.com/ywtail/hexo.git 
     branch: master
   - type: leancloud_counter_security_sync
 
